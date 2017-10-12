@@ -29,9 +29,24 @@ public class Title {
 		this.titlename = titlename;
 	}
 
+	/*@Override
+	public String toString() {
+		return String.format("%s",  titlename);
+	}*/
+	
+	
 	@Override
 	public String toString() {
-		return String.format("title [titleNo=%s, titlename=%s]", titleNo, titlename);
+		return String.format("%s %s", titleNo, titlename);
 	}
+	
+	
+	
+
+	public Title(int titleNo) {
+		this.titleNo = titleNo;
+	}
+
+	
 
 }
