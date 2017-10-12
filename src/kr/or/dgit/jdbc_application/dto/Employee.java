@@ -48,6 +48,9 @@ public class Employee {
 		this.dno1= dno2;
 	}*/
 
+
+
+
 	public int getTitle1() {
 		return title.getTitleNo();
 	}

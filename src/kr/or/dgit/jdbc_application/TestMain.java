@@ -1,12 +1,23 @@
 package kr.or.dgit.jdbc_application;
 
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
+import kr.or.dgit.jdbc_application.common.TextFieldComponent;
+import kr.or.dgit.jdbc_application.content.DepartmentContent;
+import kr.or.dgit.jdbc_application.content.EmployeeContent;
+import kr.or.dgit.jdbc_application.content.TitleContent;
 import kr.or.dgit.jdbc_application.dao.DepartmentDao;
 import kr.or.dgit.jdbc_application.dao.EmployeeDao;
 import kr.or.dgit.jdbc_application.dao.TitleDao;
@@ -18,9 +29,9 @@ import kr.or.dgit.jdbc_application.jdbc.DBCon;
 public class TestMain {
 
 	public static void main(String[] args) {
-		//testDBCon();		//db연결 & 만들기
+		/*//testDBCon();		//db연결 & 만들기
 		Department dept = new Department(4, "마케팅",10);
-		/*Department dept = new Department(4, "마케팅",10);
+		Department dept = new Department(4, "마케팅",10);
 
 		testInsert(dept);
 		testListAll();
@@ -30,18 +41,18 @@ public class TestMain {
 		testDeptNo(dept);
 		
 		testDelete(dept);
-		testListAll();*/
+		testListAll();
 		
 		//testDeptNo(dept);
 		
 		Title title = new Title(2, "대리");
 		Title t = new Title(3);
 		Title t1 = new Title(3, "담당");
-		/*testInsertTitle(title);
+		testInsertTitle(title);
 		
 		testDeleteTitle(title);
 		
-		testTitleListAll();*/
+		testTitleListAll();
 		
 		//testTitleNo(t);
 		testTitleListAll();
@@ -58,14 +69,147 @@ public class TestMain {
 		//Employee employee = new Employee(3427,"최종철",5,3011,1500000,3);
 		
 		
-		/*insertEmp(emp);
+		insertEmp(emp);
 		
-		DeleteEmp(emp1);*/
+		DeleteEmp(emp1);
 		
 		employeeUpdate(emp2);
 		
 		
-		employeeAllList();
+		employeeAllList();*/
+		
+
+		//testTextFieldComponent();
+		
+		//testDepartmentContent();
+		
+		
+		//testTitleContent();
+		
+		testEmployeeContent();
+	}
+
+
+
+
+
+	private static void testEmployeeContent() {
+		EmployeeContent tfc = new EmployeeContent();
+		tfc.setContent(new Employee(1, "홍길동", new Title(1), new Employee(2), 1000000, new Department(1)));
+		
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					Employee dept = tfc.getContent();
+					StringBuilder sb = new StringBuilder();
+					sb.append(dept.getEmpNo());
+					sb.append(dept.getEmpName());
+					sb.append(dept.getDno());
+					sb.append(dept.getTitle());
+					sb.append(dept.getSalary());
+					sb.append(dept.getManager());
+					JOptionPane.showMessageDialog(null, sb);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		testContnet(tfc, btn);
+	}
+		
+	
+
+
+
+	private static void testTitleContent() {
+		TitleContent tfc = new TitleContent();	
+		
+		
+		tfc.setContent(new Title(1, "사장"));
+		
+		JButton btn = new JButton("테스트");	
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					tfc.isEmptyCheck();
+					Title title =  tfc.getConten();
+					
+					JOptionPane.showMessageDialog(null, title);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		
+		testContnet(tfc, btn);
+	}
+
+
+
+	private static void testDepartmentContent() {
+		DepartmentContent tfc = new DepartmentContent();	
+		
+		Department dept = new Department(1, "개발",10);
+		tfc.setContent(dept);
+		
+		JButton btn = new JButton("테스트");	
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					tfc.isEmptyCheck();
+					Department dept1 = tfc.getConten();
+					
+					JOptionPane.showMessageDialog(null, dept1);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		
+		testContnet(tfc, btn);
+	}
+
+
+
+	private static void testTextFieldComponent() {
+		TextFieldComponent tfc = new TextFieldComponent("테스트");	
+		tfc.setTextValue("재진");
+		
+		JButton btn = new JButton("테스트");	
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getTextValue());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		
+		testContnet(tfc, btn);
+	}
+
+
+
+	private static void testContnet(JPanel panel, JButton btn) {
+		JFrame jf = new JFrame();
+		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		jf.setBounds(10, 10, 200, 150);
+		jf.add(panel);
+		jf.add(btn, BorderLayout.SOUTH);
+		jf.setVisible(true);
+		
 	}
 
 
