@@ -47,5 +47,9 @@ public class Department {
 	public String toString() {
 		return String.format("%s %s %s", deptNo, deptName, floor);
 	}
-
+	
+	public Object[] toArray(){
+		return new Object[]{deptNo, deptName, floor};
+	}
+	
 }

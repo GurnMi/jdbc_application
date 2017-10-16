@@ -116,4 +116,19 @@ public class Employee {
 				empNo, empName,	title.getTitlename(), manager.getEmpName(), salary, dno.getDeptName());
 	}
 
+	/*public Object[] ToArray(){
+		return new Object[]{empNo, empName,	title, manager, salary, dno};
+	}*/
+
+
+
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+	return new Object[]{empNo, empName,	title.getTitlename(), manager.getEmpName(), salary, dno.getDeptName()};
+	}
+
+
+
+
+	
 }

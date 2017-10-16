@@ -40,7 +40,9 @@ public class Title {
 		return String.format("%s %s", titleNo, titlename);
 	}
 	
-	
+	public Object[] toArray(){
+		return new Object[]{titleNo, titlename};
+	}
 	
 
 	public Title(int titleNo) {

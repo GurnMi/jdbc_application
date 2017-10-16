@@ -9,13 +9,14 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
+import kr.or.dgit.jdbc_application.service.DepartmentService;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class ViewDepartment extends AbstractView {
-
-	private JPanel contentPane;
+	private DepartmentService service;
+	//private JPanel contentPane;
 
 	public ViewDepartment(String title){
 		super(title);
@@ -23,7 +24,8 @@ public class ViewDepartment extends AbstractView {
 
 	@Override
 	protected AbstractList createList() {
-		ListDepartment pList = new ListDepartment();
+		ListDepartment pList = new ListDepartment(service);
+		pList.loadData();
 		return pList;
 	}
 	
@@ -31,6 +33,12 @@ public class ViewDepartment extends AbstractView {
 	protected JPanel createContent() {
 		DepartmentContent pContent = new DepartmentContent();
 		return pContent;
+	}
+
+	@Override
+	protected void createService() {
+		service = new DepartmentService();
+		
 	}
 
 }

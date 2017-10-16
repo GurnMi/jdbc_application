@@ -1,7 +1,11 @@
 package kr.or.dgit.jdbc_application.content;
 
 import javax.swing.JPanel;
+
+import com.sun.xml.internal.ws.api.ServiceSharedFeatureMarker;
+
 import java.awt.GridLayout;
+import java.util.List;
 import java.util.Vector;
 
 import kr.or.dgit.jdbc_application.common.ComboComponent;
@@ -9,8 +13,10 @@ import kr.or.dgit.jdbc_application.common.SpinnerComponent;
 import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
 
+@SuppressWarnings("serial")
 public class EmployeeContent extends JPanel {
 
 	
@@ -26,7 +32,10 @@ public class EmployeeContent extends JPanel {
 	private SpinnerComponent pSalary;
 	private ComboComponent<Title> pTitle;
 	
-	public EmployeeContent() {
+	private EmployeeService service;
+	
+	public EmployeeContent(EmployeeService service) {
+		this.service = service;
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
 		pEmpNo = new TextFieldComponent("사원 번호");
@@ -49,9 +58,6 @@ public class EmployeeContent extends JPanel {
 		pTitle = new ComboComponent("직책");
 		add(pTitle);
 		
-		
-		
-
 	}
 	
 	private void setManagerModel() {
@@ -62,12 +68,10 @@ public class EmployeeContent extends JPanel {
 		pManager.setComboBoxModel(lists);				
 	}
 
-	private void setTitleMOdel() {
-		Vector<Title> lists = new Vector<>();
-		lists.add(new Title(1, "사장"));
-		lists.add(new Title(2, "부장"));
-		lists.add(new Title(3, "사원"));
-		pTitle.setComboBoxModel(lists);		
+	private void setTitleModel() {
+		List<Title> lists = service.selectTitleByAll();
+		Vector<Title> titles = new Vector<>(lists);
+		pTitle.setComboBoxModel(titles);		
 	}
 
 	public void setDepartModel(){

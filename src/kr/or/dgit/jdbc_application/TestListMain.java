@@ -13,6 +13,9 @@ import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.list.ListEmployee;
 import kr.or.dgit.jdbc_application.list.ListTitle;
+import kr.or.dgit.jdbc_application.service.DepartmentService;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class TestListMain {
 
@@ -21,11 +24,14 @@ public class TestListMain {
 		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jf.setBounds(10, 10, 200, 150);
 		
-		//AbstractList ld = new ListDepartment();
-		AbstractList ld = new ListTitle();
+		//AbstractList ld = new ListDepartment(new DepartmentService());
+		//AbstractList ld = new ListTitle(new TitleService());
+		//AbstractList ld = new ListTitle();
 		//AbstractList ld = new ListEmployee();
+		AbstractList ld = new ListEmployee(new EmployeeService());
 		//ld.getSelectedItem();
 		
+		ld.loadData();
 		jf.add(ld);
 		JButton btn = new JButton("test");
 		btn.addActionListener(new ActionListener() {

@@ -1,11 +1,21 @@
 package kr.or.dgit.jdbc_application.list;
 
+import java.util.List;
+
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.jdbc_application.dto.Title;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class ListTitle extends AbstractList {
 	
+	private TitleService service;
+	
+
+	public ListTitle(TitleService service) {
+		this.service = service;
+	}
+
 	
 	@Override
 	protected void setAlighWidth() {
@@ -16,12 +26,11 @@ public class ListTitle extends AbstractList {
 
 	@Override
 	protected Object[][] getData() {
-		Object[][] datas ={
-				{1, "사장"},
-				{2, "부장"},
-				{3, "사원"}
-		};
-		
+		List<Title> lists = service.selectTitleByAll();
+		Object[][] datas = new Object[lists.size()][];
+		for(int i=0; i<lists.size();i++){
+			datas[i] = lists.get(i).toArray();
+		}
 		return datas;
 	}
 
@@ -34,8 +43,7 @@ public class ListTitle extends AbstractList {
 	public Object getSelectedItem() {
 		int selectedIndex = table.getSelectedRow();		
 		int titleNo =(int) table.getValueAt(selectedIndex, 0);
-		String titlename = (String) table.getValueAt(selectedIndex, 1);
-		return new Title(titleNo, titlename);
+		return service.selectTitleBuNo(new Title(titleNo));
 	}
 
 }
