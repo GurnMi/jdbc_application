@@ -26,7 +26,6 @@ public class EmployeeDao implements SqlDao<Employee> {
 
 	@Override
 	public int insertItem(Employee item) throws SQLException {
-		//insert into employee values(3427,	'최종철',	5,	3011,	1500000,	3	);
 		String sql  = "insert into employee values(?,?,?,?,?,?)";
 		Connection con = DBCon.getInstance().getConnection();
 		
@@ -37,7 +36,6 @@ public class EmployeeDao implements SqlDao<Employee> {
 			pstmt.setInt(4, item.getManager().getEmpNo());
 			pstmt.setInt(5, item.getSalary());
 			pstmt.setInt(6, item.getDno().getDeptNo());
-			//System.out.println(pstmt);
 			return pstmt.executeUpdate();
 		}
 		
@@ -141,53 +139,7 @@ public class EmployeeDao implements SqlDao<Employee> {
 		int salary = rs.getInt("salary");
 		Department dno = new Department(rs.getInt("dno"));
 		return new Employee(empNo, empName, title, manager, salary, dno);
-		/*int empno = rs.getInt(1);
-		String empname = rs.getString(2);
-		int titleNo = rs.getInt(3);
 		
-		int managerNo = rs.getInt(4);
-		
-		int salary = rs.getInt(5);
-		int dno = rs.getInt(6);
-		
-		Employee manager = new Employee();
-		
-		if(managerNo != 0){
-			manager = EmployeeDao.getInstance().selectItemByNo(new Employee(managerNo));
-		}	
-		Title title = TitleDao.getInstance().selectItemByNo(new Title(titleNo));
-		
-		Department DeptNo = DepartmentDao.getInstance().selectItemByNo(new Department(dno));
-		
-		return new Employee(empno, empname, title, manager, salary, DeptNo);
-*/
-	/*	int empNo = rs.getInt(1);
-		String empName = rs.getString(2);
-		int titleNo = rs.getInt(3);
-		int managerNo = rs.getInt(4);
-		int salary = rs.getInt(5);
-		int dnoNo = rs.getInt(6);
-		
-		Employee manager = new Employee();
-		Title title = new Title();
-		Department dno = new Department();
-		
-		if(managerNo != 0){
-			manager = EmployeeDao.getInstance().selectItemByNo(new Employee(managerNo));
-		}	
-		//manager = EmployeeDao.getInstance().selectItemByNo(new Employee(managerNo));
-		title = TitleDao.getInstance().selectItemByNo(new Title(titleNo));
-		dno = DepartmentDao.getInstance().selectItemByNo(new Department(dnoNo));
-		
-		return new Employee(empNo, empName, title, manager, salary, dno);
-		*/
-		/*pstmt.setInt(1, item.getEmpNo());
-		pstmt.setString(2, item.getEmpName());
-		pstmt.setInt(3, item.getTitle().getTitleNo());
-		pstmt.setInt(4, item.getManager().getEmpNo());
-		pstmt.setInt(5, item.getSalary());
-		pstmt.setInt(6, item.getDno().getDeptNo());
-		System.out.println(pstmt);*/
 	}
 
 	

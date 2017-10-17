@@ -114,9 +114,9 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 			pList.loadData();
 		}if(e.getActionCommand().equals("수정")){
 			//1.리스트에서 선택된content를 가져와서
-			
+			Object content = pContent.getContent();
 			//2.가져온 content를 pContent에 setcontent();
-			
+			setContent(content);
 			//3.버튼의 글자를"추가"=>"수정"
 			
 			
@@ -130,6 +130,9 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	}
 	
 
+
+
+	
 
 	protected void btnOkActionPerformed(ActionEvent e) {
 		//0.공백체크
@@ -157,4 +160,6 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	};
 	
 	protected abstract void deleteContent(Object item);
+	
+	protected abstract void setContent(Object content) ;
 }

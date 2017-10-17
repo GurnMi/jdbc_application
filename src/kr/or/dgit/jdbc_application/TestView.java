@@ -14,11 +14,11 @@ public class TestView {
 				try {
 					
 					
-					/*AbstractView frame2 = new ViewTitle("직책관리");
+					AbstractView frame2 = new ViewTitle("직책관리");
 					frame2.setVisible(true);
 					
 					AbstractView frame1 = new ViewDepartment("부서관리");
-					frame1.setVisible(true);*/
+					frame1.setVisible(true);
 					
 					AbstractView frame3 = new ViewEmployee("사원관리");
 					frame3.setVisible(true);

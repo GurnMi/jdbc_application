@@ -33,7 +33,7 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 	private ComboComponent<Title> pTitle;
 	private EmployeeService service;
 	private Department seldept;
-	private Department selD = new Department(10, "rh", 1);
+	private Department selD;
 	
 	public EmployeeContent(EmployeeService service) {
 		this.service = service;
@@ -74,8 +74,7 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 
 	private void setManagerModel(Department selD2) {
 		List<Employee> lists = service.selectEmployeeByDno(selD2);
-		//List<Employee> lists = (List<Employee>) service.selectEmployeeByAll();
-		System.out.println(lists);
+		//System.out.println(lists);
 		
 		Employee ceo = new Employee(4377);
 		if (!lists.contains(ceo)){
@@ -157,7 +156,7 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 	
 	protected void pDnoComboActionPerformed(ActionEvent e) {
 		selD = pDno.getSelectedItem();
-		System.out.println(selD);
+		//System.out.println(selD);
 		setManagerModel(selD);
 	}
 }

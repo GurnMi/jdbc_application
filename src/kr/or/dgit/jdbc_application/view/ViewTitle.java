@@ -60,6 +60,11 @@ public class ViewTitle extends AbstractView {
 		service.deleteTitle((Title)item);
 	}
 
+	@Override
+	protected void setContent(Object content) {
+		//pContent.setContent(content);
+	}
+
 	
 
 	
