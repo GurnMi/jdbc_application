@@ -21,7 +21,7 @@ import javax.swing.JButton;
 public class ViewDepartment extends AbstractView {
 	private DepartmentService service;
 	//private JPanel contentPane;
-	private DepartmentContent pContent;
+	//private DepartmentContent pContent;
 
 	public ViewDepartment(String title){
 		super(title);
@@ -29,7 +29,7 @@ public class ViewDepartment extends AbstractView {
 
 	@Override
 	protected AbstractList createList() {
-		ListDepartment pList = new ListDepartment(service);
+		pList = new ListDepartment(service);
 		pList.loadData();
 		return pList;
 	}
@@ -37,7 +37,7 @@ public class ViewDepartment extends AbstractView {
 	@Override
 	protected AbstractContent<Department> createContent() {
 		pContent = new DepartmentContent();
-		return pContent;
+		return (AbstractContent<Department>) pContent;
 	}
 
 	@Override

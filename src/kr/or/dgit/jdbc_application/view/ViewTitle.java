@@ -23,9 +23,8 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class ViewTitle extends AbstractView {
 
-	private JPanel contentPane;
 	private TitleService service;
-	private TitleContent pContent;
+	
 	
 	
 	public ViewTitle(String title){
@@ -34,15 +33,16 @@ public class ViewTitle extends AbstractView {
 
 	@Override
 	protected AbstractList createList() {
-		ListTitle pList = new ListTitle(service);
+		pList = new ListTitle(service);
 		pList.loadData();
 		return pList;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected AbstractContent<Title> createContent() {
 		pContent = new TitleContent();
-		return pContent;
+		return (AbstractContent<Title>) pContent;
 	}
 	
 	@Override

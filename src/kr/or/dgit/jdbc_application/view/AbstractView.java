@@ -20,8 +20,8 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JButton btnOk;
 	private JButton btnCancel;
-	private AbstractContent<?> pContent;
-	
+	protected AbstractContent<?> pContent;
+	protected AbstractList pList;
 
 	public AbstractView(String title) {
 		setTitle(title);
@@ -51,7 +51,7 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 		pbtn.add(btnCancel);
 		
-		AbstractList pList = createList();
+		pList = createList();
 		contentPane.add(pList, BorderLayout.CENTER);
 	}
 
