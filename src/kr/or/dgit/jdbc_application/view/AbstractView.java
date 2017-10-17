@@ -9,12 +9,19 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
+import kr.or.dgit.jdbc_application.content.AbstractContent;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public abstract class AbstractView extends JFrame {
+public abstract class AbstractView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton btnOk;
+	private JButton btnCancel;
+	private AbstractContent<?> pContent;
+	
 
 	public AbstractView(String title) {
 		setTitle(title);
@@ -30,16 +37,18 @@ public abstract class AbstractView extends JFrame {
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		pNorth.setLayout(new BorderLayout(0, 0));
 		
-		JPanel pContent = createContent();
+		pContent = createContent();
 		pNorth.add(pContent, BorderLayout.NORTH);
 		
 		JPanel pbtn = new JPanel();
 		pNorth.add(pbtn, BorderLayout.SOUTH);
 		
-		JButton btnOk = new JButton("추가");
+		btnOk = new JButton("추가");
+		btnOk.addActionListener(this);
 		pbtn.add(btnOk);
 		
-		JButton btnCancel = new JButton("취소");
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
 		pbtn.add(btnCancel);
 		
 		AbstractList pList = createList();
@@ -50,5 +59,18 @@ public abstract class AbstractView extends JFrame {
 
 	protected abstract AbstractList createList();
 
-	protected abstract JPanel createContent();
+	protected abstract AbstractContent<?> createContent();
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			btnCancelActionPerformed(e);
+		}
+		if (e.getSource() == btnOk) {
+			btnOkActionPerformed(e);
+		}
+	}
+	
+	protected abstract void btnOkActionPerformed(ActionEvent e) ;
+	protected void btnCancelActionPerformed(ActionEvent e){
+		pContent.clear();
+	};
 }

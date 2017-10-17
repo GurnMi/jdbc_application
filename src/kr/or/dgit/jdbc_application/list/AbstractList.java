@@ -35,7 +35,6 @@ public abstract class AbstractList extends JPanel {
 		table.setModel(model);
 		setAlighWidth();
 		
-		
 	}
 
 	protected abstract void setAlighWidth();

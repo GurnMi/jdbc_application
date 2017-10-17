@@ -17,7 +17,7 @@ import kr.or.dgit.jdbc_application.service.EmployeeService;
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
 
 @SuppressWarnings("serial")
-public class EmployeeContent extends JPanel {
+public class EmployeeContent extends AbstractContent<Employee> {
 
 	
 	/*private ComboBoxComponent pTitle;
@@ -60,6 +60,7 @@ public class EmployeeContent extends JPanel {
 		
 	}
 	
+
 	private void setManagerModel() {
 		Vector<Employee> lists = new Vector<>();
 		lists.add(new Employee(1, "서현진",new Title(1, "사장"),new Employee(1), 100000, new Department(1)));
@@ -68,6 +69,7 @@ public class EmployeeContent extends JPanel {
 		pManager.setComboBoxModel(lists);				
 	}
 
+	
 	private void setTitleModel() {
 		List<Title> lists = service.selectTitleByAll();
 		Vector<Title> titles = new Vector<>(lists);
@@ -81,6 +83,7 @@ public class EmployeeContent extends JPanel {
 		lists.add(new Department(3, "개발3", 13));
 		pDno.setComboBoxModel(lists);
 	}
+	
 	public Employee getContent(){
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());
 		String empName = pEmpName.getTextValue();
@@ -91,6 +94,7 @@ public class EmployeeContent extends JPanel {
 		return new Employee(empNo, empName, title, manager, salary, dno);
 	}
 	
+	@Override
 	public void setContent(Employee employee){
 		pEmpNo.setTextValue(employee.getEmpNo()+"");
 		pEmpName.setTextValue(employee.getEmpName());
@@ -100,6 +104,7 @@ public class EmployeeContent extends JPanel {
 		pTitle.setSelectedItem(employee.getTitle());
 	}
 	
+	@Override
 	public void isEmptyCheck() throws Exception {
 		pEmpNo.isEmptyCheck();
 		pEmpName.isEmptyCheck();
@@ -107,6 +112,23 @@ public class EmployeeContent extends JPanel {
 		pManager.isEmptyCheck();
 		pSalary.isEmptyCheck();
 		pTitle.isEmptyCheck();
+	}
+
+	@Override
+	public Employee getConten() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clear() {
+		pEmpNo.setTextValue("");
+		pEmpName.setTextValue("");
+		pDno.setSelectedIndex(0);
+		pManager.setSelectedIndex(0);
+		pSalary.setSpinValue(1500000);
+		pTitle.setSelectedIndex(0);
+		
 	}
 	
 	

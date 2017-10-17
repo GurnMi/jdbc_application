@@ -2,6 +2,7 @@ package kr.or.dgit.jdbc_application.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,8 +13,10 @@ import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.list.ListTitle;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
 import kr.or.dgit.jdbc_application.service.TitleService;
+import kr.or.dgit.jdbc_application.content.AbstractContent;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
 import kr.or.dgit.jdbc_application.content.TitleContent;
+import kr.or.dgit.jdbc_application.dto.Title;
 
 import javax.swing.JButton;
 
@@ -22,6 +25,7 @@ public class ViewTitle extends AbstractView {
 
 	private JPanel contentPane;
 	private TitleService service;
+	private TitleContent pContent;
 	
 	
 	public ViewTitle(String title){
@@ -36,8 +40,8 @@ public class ViewTitle extends AbstractView {
 	}
 	
 	@Override
-	protected JPanel createContent() {
-		TitleContent pContent = new TitleContent();
+	protected AbstractContent<Title> createContent() {
+		pContent = new TitleContent();
 		return pContent;
 	}
 	
@@ -45,5 +49,13 @@ public class ViewTitle extends AbstractView {
 	protected void createService() {
 		service = new TitleService();
 	}
+
+	@Override
+	protected void btnOkActionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

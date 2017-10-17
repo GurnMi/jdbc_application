@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
 import kr.or.dgit.jdbc_application.dto.Department;
 
-public class DepartmentContent extends JPanel {
+public class DepartmentContent extends AbstractContent<Department> {
 
 	private TextFieldComponent pDeptNo;
 	private TextFieldComponent pDeptName;
@@ -25,6 +25,7 @@ public class DepartmentContent extends JPanel {
 		
 	}
 
+	@Override
 	public Department getConten(){
 		int deptNo = Integer.parseInt(pDeptNo.getTextValue());
 		String deptName = pDeptName.getTextValue(); 
@@ -32,16 +33,26 @@ public class DepartmentContent extends JPanel {
 		return new Department(deptNo, deptName, floor);
 	}
 	
+	@Override
 	public void setContent(Department department){
 		pDeptNo.setTextValue(department.getDeptNo()+"");
 		pDeptName.setTextValue(department.getDeptName());
 		pFloor.setTextValue(department.getFloor()+"");
 	}
 
+	@Override
 	public void isEmptyCheck() throws Exception{
 		pDeptNo.isEmptyCheck();
 		pDeptName.isEmptyCheck();
 		pFloor.isEmptyCheck();
+	}
+
+	@Override
+	public void clear() {
+		pDeptNo.setTextValue("");
+		pDeptName.setTextValue("");
+		pFloor.setTextValue("");
+		
 	}
 	
 }
