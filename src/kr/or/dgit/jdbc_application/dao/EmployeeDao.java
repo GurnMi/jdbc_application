@@ -37,7 +37,7 @@ public class EmployeeDao implements SqlDao<Employee> {
 			pstmt.setInt(4, item.getManager().getEmpNo());
 			pstmt.setInt(5, item.getSalary());
 			pstmt.setInt(6, item.getDno().getDeptNo());
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 			return pstmt.executeUpdate();
 		}
 		
@@ -76,7 +76,9 @@ public class EmployeeDao implements SqlDao<Employee> {
 	@Override
 	public Employee selectItemByNo(Employee item) throws SQLException {
 		Employee emp = null;
-		String sql = "select * from employee where empno = ?";
+		String sql ="select empno, empname, title, manager, salary, dno from employee where empno = ?"; 
+//				"select * from employee where empno = ?";
+		
 		Connection con = DBCon.getInstance().getConnection();
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -87,11 +89,32 @@ public class EmployeeDao implements SqlDao<Employee> {
 					emp = getEmployee(rs);	
 				}
 			}
-			
 		}
-
 		return emp;
 	}
+	
+	//만든거
+	public List<Employee> selectItemByDno(Department item) throws SQLException{
+		List<Employee> lists = new ArrayList<>();
+		String sql ="select empno, empname, title, manager, salary, dno from employee where dno = ?"; 
+		Connection con = DBCon.getInstance().getConnection();
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			pstmt.setInt(1, item.getDeptNo());
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					lists.add(getEmployee(rs));	
+				}
+			}
+		}
+		return lists;
+		
+	}
+	
+
+	
 
 	@Override
 	public List<Employee> selectItemByAll() throws SQLException {
@@ -111,7 +134,14 @@ public class EmployeeDao implements SqlDao<Employee> {
 
 	private Employee getEmployee(ResultSet rs) throws SQLException {
 				
-		int empno = rs.getInt(1);
+		int empNo = rs.getInt("empno");
+		String empName = rs.getString("empname");
+		Title title = new Title(rs.getInt("title"));
+		Employee manager = new Employee(rs.getInt("manager"));
+		int salary = rs.getInt("salary");
+		Department dno = new Department(rs.getInt("dno"));
+		return new Employee(empNo, empName, title, manager, salary, dno);
+		/*int empno = rs.getInt(1);
 		String empname = rs.getString(2);
 		int titleNo = rs.getInt(3);
 		
@@ -130,7 +160,7 @@ public class EmployeeDao implements SqlDao<Employee> {
 		Department DeptNo = DepartmentDao.getInstance().selectItemByNo(new Department(dno));
 		
 		return new Employee(empno, empname, title, manager, salary, DeptNo);
-
+*/
 	/*	int empNo = rs.getInt(1);
 		String empName = rs.getString(2);
 		int titleNo = rs.getInt(3);
@@ -160,6 +190,7 @@ public class EmployeeDao implements SqlDao<Employee> {
 		System.out.println(pstmt);*/
 	}
 
+	
 	
 	
 	

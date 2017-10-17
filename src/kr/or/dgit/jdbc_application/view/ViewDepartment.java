@@ -47,10 +47,17 @@ public class ViewDepartment extends AbstractView {
 	}
 
 	@Override
-	protected void btnOkActionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	protected void insertContent(Object content) {
+		service.insertDepartment((Department)content);
+	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		service.deleteDepartment((Department)item);
 		
 	}
+
+
 
 
 	

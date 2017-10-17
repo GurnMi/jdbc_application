@@ -51,10 +51,16 @@ public class ViewTitle extends AbstractView {
 	}
 
 	@Override
-	protected void btnOkActionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	protected void insertContent(Object content) {
+		service.insertTitle((Title)content);
 	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		service.deleteTitle((Title)item);
+	}
+
+	
 
 	
 

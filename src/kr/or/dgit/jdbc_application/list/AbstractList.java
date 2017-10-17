@@ -2,6 +2,8 @@ package kr.or.dgit.jdbc_application.list;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
 import java.awt.BorderLayout;
 import java.util.Vector;
 
@@ -29,7 +31,10 @@ public abstract class AbstractList extends JPanel {
 
 	}
 
-
+	public void setPopupMenu(JPopupMenu menu){
+		table.setComponentPopupMenu(menu);
+	}
+	
 	public void loadData() {
 		DefaultTableModel model = new DefaultTableModel(getData(), getColumnNames());
 		table.setModel(model);

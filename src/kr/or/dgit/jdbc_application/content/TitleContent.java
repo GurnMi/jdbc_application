@@ -25,7 +25,7 @@ public class TitleContent extends AbstractContent<Title> {
 	}
 
 	@Override
-	public Title getConten(){
+	public Title getContent(){
 		int titleNo = Integer.parseInt(pTitleno.getTextValue());
 		String titlename = pTitlename.getTextValue();
 		return new Title(titleNo, titlename);

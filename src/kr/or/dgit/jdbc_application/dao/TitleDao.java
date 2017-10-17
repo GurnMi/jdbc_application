@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.jdbc.DBCon;
 

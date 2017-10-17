@@ -37,7 +37,7 @@ public class Title {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s", titleNo, titlename);
+		return String.format(" %s (%s)", titlename, titleNo);
 	}
 	
 	public Object[] toArray(){

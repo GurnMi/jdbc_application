@@ -17,6 +17,7 @@ import kr.or.dgit.jdbc_application.content.AbstractContent;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
 import kr.or.dgit.jdbc_application.content.EmployeeContent;
 import kr.or.dgit.jdbc_application.content.TitleContent;
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 
 import javax.swing.JButton;
@@ -50,9 +51,15 @@ public class ViewEmployee extends AbstractView {
 	}
 
 	@Override
-	protected void btnOkActionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	protected void insertContent(Object content) {
+		es.insertEmployee((Employee)content);
 	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		es.deleteEmployee((Employee)item);
+	}
+
+	
 
 }

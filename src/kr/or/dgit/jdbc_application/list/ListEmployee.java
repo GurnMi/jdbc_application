@@ -63,23 +63,21 @@ public class ListEmployee extends AbstractList {
 	}
 
 	private Object getManager(Employee manager) {
-		Employee emp = service.selectEmployeeByNo(manager);
-		if(emp ==null){
+		Employee emp = (Employee) service.selectEmployeeByNo(manager);
+		if (emp == null) {
 			return String.format("%s", "");
 		}
-		return emp;
+		return String.format("%s(%d)", emp.getEmpName(), emp.getEmpNo());
 	}
 
 	private Object getDno(Department dno) {
 		return service.selectDepartmentByNo(dno).getDeptName();
-		//return null;
 	}
 
 	
 	
 	@Override
 	protected String[] getColumnNames() {
-		// TODO Auto-generated method stub
 		return new String[] {"사원번호","사원명","직책","관리자","급여","부서"};
 	}
 

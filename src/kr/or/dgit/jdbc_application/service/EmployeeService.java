@@ -14,7 +14,7 @@ import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
 
 public class EmployeeService {
-	private SqlDao<Employee> empDao;
+	private EmployeeDao empDao;
 	private SqlDao<Title> titleDao;
 	private SqlDao<Department> deptDao;
 	
@@ -67,6 +67,15 @@ public class EmployeeService {
 		return null;
 	}
 	
+	public List<Employee> selectEmployeeByDno(Department i){
+		try {
+			return empDao.selectItemByDno(i);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	
 	public List<Employee> selectEmployeeByAll(){
 		try {
@@ -76,6 +85,8 @@ public class EmployeeService {
 		}
 		return null;
 	}
+	
+	
 	
 	public List<Title> selectTitleByAll() {
 		try {

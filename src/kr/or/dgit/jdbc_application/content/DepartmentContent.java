@@ -26,7 +26,7 @@ public class DepartmentContent extends AbstractContent<Department> {
 	}
 
 	@Override
-	public Department getConten(){
+	public Department getContent(){
 		int deptNo = Integer.parseInt(pDeptNo.getTextValue());
 		String deptName = pDeptName.getTextValue(); 
 		int floor = Integer.parseInt(pFloor.getTextValue());

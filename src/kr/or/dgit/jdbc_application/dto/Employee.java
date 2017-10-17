@@ -8,10 +8,7 @@ public class Employee {
 	private int salary;
 	private Department dno;
 	
-	private int title1;
-	private int manager1;
-	private int dno1;
-	
+
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -105,22 +102,25 @@ public class Employee {
 		this.dno = dno;
 	}
 
-	@Override
+	
 	/*public String toString() {
 		return String.format("%s %s %s %s %s %s",
 				empNo, empName,	title.getTitlename(), manager.getEmpName(), salary, dno.getDeptName());
 	}*/
 	
-	public String toString() {
+	/*public String toString() {
 		return String.format("%s %s %s %s %s %s",
 				empNo, empName,	title.getTitlename(), manager.getEmpName(), salary, dno.getDeptName());
-	}
+	}*/
 
 	/*public Object[] ToArray(){
 		return new Object[]{empNo, empName,	title, manager, salary, dno};
 	}*/
 
-
+	@Override
+	public String toString() {
+		return String.format("%s(%s)", empName, empNo);
+	}
 
 	public Object[] toArray() {
 		// TODO Auto-generated method stub

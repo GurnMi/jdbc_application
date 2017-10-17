@@ -2,6 +2,8 @@ package kr.or.dgit.jdbc_application.common;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JLabel;
@@ -10,11 +12,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 
 public class ComboComponent<T> extends JPanel {
 
-	private JComboBox combo;
+	private JComboBox<T> combo;
 
 	public ComboComponent(String title) {
 		setLayout(new GridLayout(1, 0, 10, 0));
@@ -28,12 +31,18 @@ public class ComboComponent<T> extends JPanel {
 		
 		//setContent(arr);
 		add(combo);
+		//comboActionDno();
 
 	}
+	
+	
+	
+
 
 	public int getSelectedIndex(){
 		return combo.getSelectedIndex();
 	}
+	
 	
 
 	@SuppressWarnings("unchecked")

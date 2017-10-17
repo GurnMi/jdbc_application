@@ -91,7 +91,6 @@ public class TestMain {
 		
 		
 		
-		
 	}
 
 
@@ -143,7 +142,7 @@ public class TestMain {
 				
 				try {
 					tfc.isEmptyCheck();
-					Title title =  tfc.getConten();
+					Title title =  tfc.getContent();
 					
 					JOptionPane.showMessageDialog(null, title);
 				} catch (Exception e1) {
@@ -170,7 +169,7 @@ public class TestMain {
 				
 				try {
 					tfc.isEmptyCheck();
-					Department dept1 = tfc.getConten();
+					Department dept1 = tfc.getContent();
 					
 					JOptionPane.showMessageDialog(null, dept1);
 				} catch (Exception e1) {

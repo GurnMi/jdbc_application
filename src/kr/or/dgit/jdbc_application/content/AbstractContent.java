@@ -8,7 +8,7 @@ import kr.or.dgit.jdbc_application.dto.Title;
 public abstract class AbstractContent<T> extends JPanel {
 
 	
-	public abstract T getConten();
+	public abstract T getContent();
 	
 	public abstract void setContent(T content);
 	
