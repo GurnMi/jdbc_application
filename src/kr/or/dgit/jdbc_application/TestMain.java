@@ -30,9 +30,9 @@ import kr.or.dgit.jdbc_application.service.EmployeeService;
 public class TestMain {
 
 	public static void main(String[] args) {
-		/*//testDBCon();		//db연결 & 만들기
+		testDBCon();		//db연결 & 만들기
 		Department dept = new Department(4, "마케팅",10);
-		Department dept = new Department(4, "마케팅",10);
+		//Department dept = new Department(4, "마케팅",10);
 
 		testInsert(dept);
 		testListAll();
@@ -77,7 +77,7 @@ public class TestMain {
 		employeeUpdate(emp2);
 		
 		
-		employeeAllList();*/
+		employeeAllList();
 		
 
 		//testTextFieldComponent();
@@ -88,6 +88,7 @@ public class TestMain {
 		//testTitleContent();
 		
 		testEmployeeContent();
+		
 		
 		
 		
